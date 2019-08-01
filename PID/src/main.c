@@ -1,10 +1,10 @@
 /**
   ******************************************************************************
   * @file    main.c
-  * @author  Ac6
+  * @author  
   * @version V1.0
-  * @date    01-December-2013
-  * @brief   Default main function.
+  * @date    01-08-2019
+  * @brief   PID with PWM and encoders
   ******************************************************************************
 */
 #include "stm32f4xx.h"
@@ -79,10 +79,10 @@
 #define RIGHT_COUNT()           ENCR_TIMER->CNT
 
 /*
- * Inicjalizowanie pinów i kana³ów do sterowania silnikami
+ * Inicjalizowanie pinÃ³w i kanaÂ³Ã³w do sterowania silnikami
  */
 
-// Piny generuj¹ce PWM
+// Piny generujÂ¹ce PWM
 
 #define PWMR_PIN 				GPIO_Pin_8
 #define PWMR_GPIO_CLK			RCC_AHB1Periph_GPIOC
@@ -95,7 +95,7 @@
 #define PWM_GPIO_PORT			GPIOC
 #define PWM_AF					GPIO_AF_TIM3
 
-//	Piny okreœlaj¹ce kierunek ruchu
+//	Piny okreÅ“lajÂ¹ce kierunek ruchu
 #define DIRR_PIN 				GPIO_Pin_12
 #define DIRR_GPIO_PORT			GPIOC
 #define DIRR_GPIO_CLK			RCC_AHB1Periph_GPIOC
@@ -111,7 +111,7 @@
 #define MOT_TIMER				TIM3
 #define MOT_TIMER_CLOCK			RCC_APB1Periph_TIM3
 
-// Ustawienia kana³ów i odpowiadaj¹cych im funkcji
+// Ustawienia kanaÂ³Ã³w i odpowiadajÂ¹cych im funkcji
 //Silnik prawy na kanale 3, lewy na kanale 1
 #define MOTR_CHANNEL_INIT(tim,channel_str)		TIM_OC3Init(tim,channel_str)
 #define MOTL_CHANNEL_INIT(tim,channel_str)		TIM_OC1Init(tim,channel_str)
@@ -120,46 +120,46 @@
 #define MOTL_SetCompare(Compare)				TIM_SetCompare1(TIM3, Compare)
 
 /*
- * Inicjalizacja pinów i timera do sterowania silnikami
+ * Inicjalizacja pinÃ³w i timera do sterowania silnikami
  */
 void motorContrInit(void)
 {
-	GPIO_InitTypeDef gpio;           //struktura przechowuj¹ca dane do konfiguracji GPIO
-	TIM_TimeBaseInitTypeDef tim;     //struktura przechowuj¹ca dane do konfiguracji timera
-	TIM_OCInitTypeDef  channel;      //struktura przechowuj¹ca dane do konfiguracji kana³ów timera
+	GPIO_InitTypeDef gpio;           //struktura przechowujÂ¹ca dane do konfiguracji GPIO
+	TIM_TimeBaseInitTypeDef tim;     //struktura przechowujÂ¹ca dane do konfiguracji timera
+	TIM_OCInitTypeDef  channel;      //struktura przechowujÂ¹ca dane do konfiguracji kanaÂ³Ã³w timera
 
-	RCC_AHB1PeriphClockCmd(DIRR_GPIO_CLK   , ENABLE);   //pod³¹czenie zegara do GPIO
-	RCC_APB1PeriphClockCmd(MOT_TIMER_CLOCK , ENABLE);                                                  //pod³¹czenie zegara do timera TIM3
+	RCC_AHB1PeriphClockCmd(DIRR_GPIO_CLK   , ENABLE);   //podÂ³Â¹czenie zegara do GPIO
+	RCC_APB1PeriphClockCmd(MOT_TIMER_CLOCK , ENABLE);                                                  //podÂ³Â¹czenie zegara do timera TIM3
 
-	TIM_TimeBaseStructInit(&tim);               //inicjalizacja timera wartoœciami domyœlnymi
-	tim.TIM_CounterMode = TIM_CounterMode_Up;   //timer liczy w górê od 0 do Period
+	TIM_TimeBaseStructInit(&tim);               //inicjalizacja timera wartoÅ“ciami domyÅ“lnymi
+	tim.TIM_CounterMode = TIM_CounterMode_Up;   //timer liczy w gÃ³rÃª od 0 do Period
 	tim.TIM_Prescaler = 100;                    //preskaler z zegara systemowego
-	tim.TIM_Period = 1000 - 1;                  //Period - d³ugoœc impulsu
+	tim.TIM_Period = 1000 - 1;                  //Period - dÂ³ugoÅ“c impulsu
 	TIM_TimeBaseInit(MOT_TIMER, &tim);               //inicjalizacja timera danymi ze struktury tim
 
-	TIM_OCStructInit(&channel);                        //inicjalizacja kana³u timera wartoœciami domyœlnymi
-	channel.TIM_OCMode = TIM_OCMode_PWM1;              //tryb PWM, gdzie wype³nienie jest stanem wysokim
-	channel.TIM_OutputState = TIM_OutputState_Enable;  //w³¹cz dzia³anie
-	//inicjalizacja kana³u danymi ze struktury channel
+	TIM_OCStructInit(&channel);                        //inicjalizacja kanaÂ³u timera wartoÅ“ciami domyÅ“lnymi
+	channel.TIM_OCMode = TIM_OCMode_PWM1;              //tryb PWM, gdzie wypeÂ³nienie jest stanem wysokim
+	channel.TIM_OutputState = TIM_OutputState_Enable;  //wÂ³Â¹cz dziaÂ³anie
+	//inicjalizacja kanaÂ³u danymi ze struktury channel
 	MOTL_CHANNEL_INIT(MOT_TIMER,&channel);
 
-	TIM_OCStructInit(&channel);                        //inicjalizacja kana³u timera wartoœciami domyœlnymi
-	channel.TIM_OCMode = TIM_OCMode_PWM1;              //tryb PWM, gdzie wype³nienie jest stanem wysokim
-	channel.TIM_OutputState = TIM_OutputState_Enable;  //w³¹cz dzia³anie
-	//inicjalizacja kana³u danymi ze struktury channel
+	TIM_OCStructInit(&channel);                        //inicjalizacja kanaÂ³u timera wartoÅ“ciami domyÅ“lnymi
+	channel.TIM_OCMode = TIM_OCMode_PWM1;              //tryb PWM, gdzie wypeÂ³nienie jest stanem wysokim
+	channel.TIM_OutputState = TIM_OutputState_Enable;  //wÂ³Â¹cz dziaÂ³anie
+	//inicjalizacja kanaÂ³u danymi ze struktury channel
 	MOTR_CHANNEL_INIT(MOT_TIMER,&channel);
 
 	GPIO_PinAFConfig(PWM_GPIO_PORT, PWMR_SOURCE, PWM_AF);
 	GPIO_PinAFConfig(PWM_GPIO_PORT, PWML_SOURCE, PWM_AF);
 
-	GPIO_StructInit(&gpio);              //inicjalizacja GPIO wartoœciami domyœlnymi
+	GPIO_StructInit(&gpio);              //inicjalizacja GPIO wartoÅ“ciami domyÅ“lnymi
 	gpio.GPIO_Pin = PWMR_PIN|PWML_PIN;          //Piny
 	gpio.GPIO_Mode = GPIO_Mode_AF;       //Pin jako "funkcyjny"
 	gpio.GPIO_OType = GPIO_OType_PP;     //Pin w trybie push-pull
-	gpio.GPIO_PuPd = GPIO_PuPd_NOPULL;   //bez rezystora podci¹gaj¹cego
-	gpio.GPIO_Speed = GPIO_Speed_100MHz; //czêstotliwoœc odœwie¿ania GPIO
+	gpio.GPIO_PuPd = GPIO_PuPd_NOPULL;   //bez rezystora podciÂ¹gajÂ¹cego
+	gpio.GPIO_Speed = GPIO_Speed_100MHz; //czÃªstotliwoÅ“c odÅ“wieÂ¿ania GPIO
 	GPIO_Init(GPIOC, &gpio); //inicjalizacja GPIO dla PWM
- /*Inicjalizacja Pinów kierunku*/
+ /*Inicjalizacja PinÃ³w kierunku*/
 	gpio.GPIO_Pin = DIRR_PIN;
 	gpio.GPIO_Mode = GPIO_Mode_OUT;
 	GPIO_Init (DIRR_GPIO_PORT, &gpio);
@@ -171,10 +171,10 @@ void motorContrInit(void)
 }
 
 /*
- *  Funkcje ustawiaj¹ce kierunek obrotu silnika i prêdkoœc
+ *  Funkcje ustawiajÂ¹ce kierunek obrotu silnika i prÃªdkoÅ“c
  *
- *  Prêdkosc ustawiana jest w 0.1% wypelnienia PWM
- *  Kierunek - naprzód: 1, wstecz: -1.
+ *  PrÃªdkosc ustawiana jest w 0.1% wypelnienia PWM
+ *  Kierunek - naprzÃ³d: 1, wstecz: -1.
  */
 void setMoveR(int8_t movementDir, uint32_t Comp)
 {
@@ -311,10 +311,10 @@ void encodersInit (void)
 int main(void)
 {
 	GPIO_InitTypeDef gpio;
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA | RCC_AHB1Periph_GPIOB | RCC_AHB1Periph_GPIOC, ENABLE); //uruchomienie zegarów do portów GPIO
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA | RCC_AHB1Periph_GPIOB | RCC_AHB1Periph_GPIOC, ENABLE); //uruchomienie zegarÃ³w do portÃ³w GPIO
 
 	gpio.GPIO_Pin = GPIO_Pin_5;          //ustawienie numeru pinu GPIO
-	gpio.GPIO_Mode = GPIO_Mode_OUT;      //ustawienie trubu na wyjœcie
+	gpio.GPIO_Mode = GPIO_Mode_OUT;      //ustawienie trubu na wyjÅ“cie
 	GPIO_Init(GPIOA, &gpio);             //inicjalizacja pinu gpio
 	GPIO_SetBits(GPIOA,GPIO_Pin_5);      //ustawienie stanu wysokiego na pinie PA5
 
