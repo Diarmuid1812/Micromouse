@@ -1,4 +1,4 @@
-src/system_stm32f4xx.o: ../src/system_stm32f4xx.c \
+src/MPU6050.o: ../src/MPU6050.c \
  C:/Users/Wojtek/Documents/STM32_workspace/PID/CMSIS/device/stm32f4xx.h \
  C:/Users/Wojtek/Documents/STM32_workspace/PID/CMSIS/core/core_cm4.h \
  C:/Users/Wojtek/Documents/STM32_workspace/PID/CMSIS/core/core_cmInstr.h \
@@ -25,7 +25,8 @@ src/system_stm32f4xx.o: ../src/system_stm32f4xx.c \
  C:/Users/Wojtek/Documents/STM32_workspace/PID/StdPeriph_Driver/inc/stm32f4xx_usart.h \
  C:/Users/Wojtek/Documents/STM32_workspace/PID/StdPeriph_Driver/inc/stm32f4xx_wwdg.h \
  C:/Users/Wojtek/Documents/STM32_workspace/PID/StdPeriph_Driver/inc/misc.h \
- C:/Users/Wojtek/Documents/STM32_workspace/PID/StdPeriph_Driver/inc/stm32f4xx_flash_ramfunc.h
+ C:/Users/Wojtek/Documents/STM32_workspace/PID/StdPeriph_Driver/inc/stm32f4xx_flash_ramfunc.h \
+ C:/Users/Wojtek/Documents/STM32_workspace/PID/inc/MPU6050.h
 
 C:/Users/Wojtek/Documents/STM32_workspace/PID/CMSIS/device/stm32f4xx.h:
 
@@ -80,3 +81,5 @@ C:/Users/Wojtek/Documents/STM32_workspace/PID/StdPeriph_Driver/inc/stm32f4xx_wwd
 C:/Users/Wojtek/Documents/STM32_workspace/PID/StdPeriph_Driver/inc/misc.h:
 
 C:/Users/Wojtek/Documents/STM32_workspace/PID/StdPeriph_Driver/inc/stm32f4xx_flash_ramfunc.h:
+
+C:/Users/Wojtek/Documents/STM32_workspace/PID/inc/MPU6050.h:

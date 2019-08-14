@@ -1,4 +1,5 @@
-src/system_stm32f4xx.o: ../src/system_stm32f4xx.c \
+src/delay.o: ../src/delay.c \
+ C:/Users/Wojtek/Documents/STM32_workspace/PID/inc/delay.h \
  C:/Users/Wojtek/Documents/STM32_workspace/PID/CMSIS/device/stm32f4xx.h \
  C:/Users/Wojtek/Documents/STM32_workspace/PID/CMSIS/core/core_cm4.h \
  C:/Users/Wojtek/Documents/STM32_workspace/PID/CMSIS/core/core_cmInstr.h \
@@ -26,6 +27,8 @@ src/system_stm32f4xx.o: ../src/system_stm32f4xx.c \
  C:/Users/Wojtek/Documents/STM32_workspace/PID/StdPeriph_Driver/inc/stm32f4xx_wwdg.h \
  C:/Users/Wojtek/Documents/STM32_workspace/PID/StdPeriph_Driver/inc/misc.h \
  C:/Users/Wojtek/Documents/STM32_workspace/PID/StdPeriph_Driver/inc/stm32f4xx_flash_ramfunc.h
+
+C:/Users/Wojtek/Documents/STM32_workspace/PID/inc/delay.h:
 
 C:/Users/Wojtek/Documents/STM32_workspace/PID/CMSIS/device/stm32f4xx.h:
 

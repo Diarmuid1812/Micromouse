@@ -31,10 +31,10 @@ endif
 all: PID.elf
 
 # Tool invocations
-PID.elf: $(OBJS) $(USER_OBJS) C:\Users\szust\workspace\PID/LinkerScript.ld
+PID.elf: $(OBJS) $(USER_OBJS) C:\Users\Wojtek\Documents\STM32_workspace\PID/LinkerScript.ld
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU GCC Linker'
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T"C:/Users/szust/workspace/PID/LinkerScript.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "PID.elf" @"objects.list" $(USER_OBJS) $(LIBS) -lm
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T"C:/Users/Wojtek/Documents/STM32_workspace/PID/LinkerScript.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "PID.elf" @"objects.list" $(USER_OBJS) $(LIBS) -lm
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build

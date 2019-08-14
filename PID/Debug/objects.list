@@ -35,6 +35,8 @@
 "StdPeriph_Driver/src/stm32f4xx_tim.o"
 "StdPeriph_Driver/src/stm32f4xx_usart.o"
 "StdPeriph_Driver/src/stm32f4xx_wwdg.o"
+"src/MPU6050.o"
+"src/delay.o"
 "src/main.o"
 "src/syscalls.o"
 "src/system_stm32f4xx.o"
